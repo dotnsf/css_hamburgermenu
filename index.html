@@ -9,14 +9,13 @@
 <meta name="apple-mobile-web-app-title" content="CSS Hamburger Menu"/>
 
 <style>
-.header{
-  /*height: 100%; */
-}
+/* ハンバーガーメニューのサイズ(32x32) */
 .hamburger-menu{
   vertical-align: center;
   width: 32px;
   height: 32px;
 }
+/* ハンバーガーメニューの位置と色 */
 .menu-btn{
   top: 20px;
   left: 10px;
@@ -28,9 +27,11 @@
   z-index: 90;
   background-color: #005B00;
 }
+/* メニュー線（本体と before と after で３本表示する） */
 .menu-btn span,
 .menu-btn span:before,
 .menu-btn span:after{
+  /* 20x3 の白線 */
   content: '';
   display: block;
   height: 3px;
@@ -39,24 +40,29 @@
   background-color: #ffffff;
   position: absolute;
 }
+/* before を少し上にずらして描画 */
 .menu-btn span:before{
   bottom: 8px;
 }
+/* after を少し下にずらして描画 */
 .menu-btn span:after{
   top: 8px;
 }
 
 /* メニューをオープンしたら三本線を×にする */
 #menu-btn-check:checked ~ .menu-btn span{
-  background-color: rgba( 255, 255, 255, 0 ); /* メニューオープン時は三本線の真ん中の線を透明にする */
+  /* メニューオープン時は三本線の真ん中の線を透明にする */
+  background-color: rgba( 255, 255, 255, 0 ); 
 }
 #menu-btn-check:checked ~ .menu-btn span::before{
+  /* メニューオープン時は三本線の上の線を 45 度傾ける */
   bottom: 0;
-  transform: rotate( 45deg ); /* メニューオープン時は三本線の上の線を 45 度傾ける */
+  transform: rotate( 45deg ); 
 }
 #menu-btn-check:checked ~ .menu-btn span::after{
+  /* メニューオープン時は三本線の下の線を -45 度傾ける */
   top: 0;
-  transform: rotate( -45deg ); /* メニューオープン時は三本線の下の線を -45 度傾ける */
+  transform: rotate( -45deg ); 
 }
 /* チェックを非表示にする */
 #menu-btn-check{
@@ -70,15 +76,15 @@
   position: fixed;
   top: 80;
   left: -100%; /* メニューを画面外へ */
-  z-index: 80;
+  z-index: 80; /* 下のコンテンツの上にかぶせて表示する */
   background-color: #005B00;
-  transition: all 0.5s;
+  transition: all 0.5s; /* 0.5秒かけてアニメーションで出し入れする */
 }
 .menu-content ul{
   padding: 70px 10px 0;
 }
 .menu-content ul li{
-  border-bottom: solid 1px #ffffff;
+  border-bottom: solid 1px #ffffff; /* メニューアイテムの区切り線 */
   list-style: none;
 }
 .menu-content ul li a{
@@ -102,10 +108,12 @@
 
 <span class="header">
   <div class="hamburger-menu">
+    <!-- ここからメニューボタン -->
     <input type="checkbox" id="menu-btn-check"/>
     <label for="menu-btn-check" class="menu-btn"><span></span></label>
+    <!-- ここまでメニューボタン -->
 
-    <!-- ここからメニュー -->
+    <!-- ここからメニュー本体 -->
     <div class="menu-content">
       <ul>
         <li><a href="#">メニューアイテム１</a></li>
@@ -113,7 +121,7 @@
         <li><a href="#">メニューアイテム３</a></li>
       </ul>
     </div>
-    <!-- ここまでメニュー -->
+    <!-- ここまでメニュー本体 -->
   </div>
 </span>
 
