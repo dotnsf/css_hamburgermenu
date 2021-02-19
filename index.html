@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"/>
+
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="apple-mobile-web-app-title" content="CSS Hamburger Menu"/>
+
+<style>
+.header{
+  /*height: 100%; */
+}
+.hamburger-menu{
+  vertical-align: center;
+  width: 32px;
+  height: 32px;
+}
+.menu-btn{
+  top: 20px;
+  left: 10px;
+  display: flex;
+  height: 32px;
+  width: 32px;
+  justify-content: center;
+  align-items: center;
+  z-index: 90;
+  background-color: #005B00;
+}
+.menu-btn span,
+.menu-btn span:before,
+.menu-btn span:after{
+  content: '';
+  display: block;
+  height: 3px;
+  width: 20px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  position: absolute;
+}
+.menu-btn span:before{
+  bottom: 8px;
+}
+.menu-btn span:after{
+  top: 8px;
+}
+
+/* メニューをオープンしたら三本線を×にする */
+#menu-btn-check:checked ~ .menu-btn span{
+  background-color: rgba( 255, 255, 255, 0 ); /* メニューオープン時は三本線の真ん中の線を透明にする */
+}
+#menu-btn-check:checked ~ .menu-btn span::before{
+  bottom: 0;
+  transform: rotate( 45deg ); /* メニューオープン時は三本線の上の線を 45 度傾ける */
+}
+#menu-btn-check:checked ~ .menu-btn span::after{
+  top: 0;
+  transform: rotate( -45deg ); /* メニューオープン時は三本線の下の線を -45 度傾ける */
+}
+/* チェックを非表示にする */
+#menu-btn-check{
+  display: none;
+}
+
+/* メニュー装飾 */
+.menu-content{
+  width: 60%;
+  height: 100%;
+  position: fixed;
+  top: 80;
+  left: -100%; /* メニューを画面外へ */
+  z-index: 80;
+  background-color: #005B00;
+  transition: all 0.5s;
+}
+.menu-content ul{
+  padding: 70px 10px 0;
+}
+.menu-content ul li{
+  border-bottom: solid 1px #ffffff;
+  list-style: none;
+}
+.menu-content ul li a{
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  box-sizing: border-box;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 9px 15px 10px 0;
+  position: relative;
+}
+
+/* メニューの出し入れ */
+#menu-btn-check:checked ~ .menu-content{
+  left: 0;  /* チェックされたら画面内へ */
+}
+</style>
+
+<body>
+
+<span class="header">
+  <div class="hamburger-menu">
+    <input type="checkbox" id="menu-btn-check"/>
+    <label for="menu-btn-check" class="menu-btn"><span></span></label>
+
+    <!-- ここからメニュー -->
+    <div class="menu-content">
+      <ul>
+        <li>メニューアイテム１</li>
+        <li>メニューアイテム２</li>
+        <li>メニューアイテム３</li>
+      </ul>
+    </div>
+    <!-- ここまでメニュー -->
+  </div>
+</span>
+
+</body>
+</html>
